@@ -1,6 +1,8 @@
 const router = require('express').Router();
 const path = require('path');
 const fs = require('fs');
+const uuid = require('uuid');
+const { parse } = require('path');
 
 router.get("/notes", (req, res) => {
     fs.readFile(path.join(__dirname, '../db/db.json'), (err, data) => {
@@ -21,6 +23,7 @@ router.post('/notes', (req,res)=>{
         const newNote = {
             title,
             text,
+            id: uuid.v4(),
         };
 
         fs.readFile(path.join(__dirname, '../db/db.json'), 'utf8', (err,data)=>{
@@ -49,5 +52,25 @@ router.post('/notes', (req,res)=>{
         res.status(500).json('Error posting new note')
     }
 });
+
+router.delete('/notes/:id', (req,res)=>{
+    const selectedNote = req.params.id;
+    fs.readFile(path.join(__dirname, '../db/db.json'), 'utf8', (err,data)=>{
+        if (err) {
+            console.error(err);
+        } else {
+            const parsedNotes = JSON.parse(data);
+
+            const updatedNotes = parsedNotes.filter((note)=>note.id!==selectedNote);
+
+            fs.writeFile('./db/db.json', JSON.stringify(updatedNotes, null, 4), (writeErr)=>
+                writeErr 
+                ? console.error(writeErr) 
+                : console.info("successfully deleted note")
+                );
+            res.json(`Note ${selectedNote} deleted.`);
+        };
+    })
+})
 
 module.exports = router;

@@ -1,14 +1,7 @@
 [
     {
-        "title": "Test Title",
-        "text": "Test text"
-    },
-    {
-        "title": "Test Note 2",
-        "text": "Test Note 2 text"
-    },
-    {
-        "title": "Note 1",
-        "text": "New note text"
+        "title": "Turn In Note Taker",
+        "text": "Once this application is done, don't forget to go turn it in!!",
+        "id": "34a395f3-88c8-4cb2-848a-74e413356153"
     }
 ]
