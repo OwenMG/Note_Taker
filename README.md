@@ -26,7 +26,9 @@
 
   ## Usage Information
 
-  To use Note Taker, run node server.js in the directory terminal, or visit the deployed application hosted on heroku.
+  To use Note Taker, run node server.js in the directory terminal, or visit the [deployed application](https://limitless-woodland-48312.herokuapp.com/) hosted on heroku.
+
+  ![](./assets/thumb.png)
 
   ## Contributing
 
